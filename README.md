@@ -27,7 +27,6 @@ Another JAX core neural net library. Not a framework.
 - Sonnet like programming model
 - Ability to inspect and manipulate entires at each layer level
 - save internal states whenever needed
-- 
 
 
 
