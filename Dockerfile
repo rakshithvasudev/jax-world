@@ -1,7 +1,17 @@
 FROM nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04
 
+
+
+#RUN rm /etc/apt/sources.list.d/cuda.list \
+# && apt update \
+# && apt install -y --no-install-recommends build-essential autoconf libtool git \
+#        ccache curl wget pkg-config sudo ca-certificates automake libssl-dev \
+#        bc python3-dev python3-pip google-perftools gdb libglib2.0-dev clang sshfs libre2-dev \
+#        libboost-dev libnuma-dev numactl sysstat sshpass ntpdate less vim iputils-ping \
+
+
 # install python3-pip
-RUN apt-get update && apt-get install python3-pip -y
+RUN apt update && apt install vim python3-pip -y
 
 
 RUN pip3 install --upgrade pip
