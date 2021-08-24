@@ -12,9 +12,9 @@ batched_x = random.normal(key, (10, 100))
 def timeit(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        t1 = time.time()
+        t1 = time.perf_counter()
         value = func(*args, **kwargs)
-        print(f"Time to run {func.__name__!r}: {time.time() - t1:.4f} secs")
+        print(f"Time to run {func.__name__!r}: {time.perf_counter() - t1:.4f} secs")
         return value
     return wrapper 
 
@@ -30,9 +30,22 @@ def apply_matrix(v):
 def naively_batched_apply_matrix(v_batched):
   return jnp.stack([apply_matrix(v) for v in v_batched])
 
-#print('Naively batched')
-#print(naively_batched_apply_matrix(batched_x).block_until_ready())
+@timeit
+@jit
+def batched_apply_matrix(v_batched):
+  return jnp.dot(v_batched, mat.T)
+
+@timeit
+@jit
+def vmap_batched_apply_matrix(v_batched):
+  return vmap(apply_matrix)(v_batched)
+
+
+
+
 naively_batched_apply_matrix(batched_x).block_until_ready()
+batched_apply_matrix(batched_x).block_until_ready()
+vmap_batched_apply_matrix(batched_x).block_until_ready()
 
 
 
