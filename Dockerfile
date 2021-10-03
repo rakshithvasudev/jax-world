@@ -21,5 +21,7 @@ RUN pip3 install numpy scipy six wheel jupyterlab
 
 RUN pip3 install --upgrade "jax[cuda111]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
+RUN pip3 install --upgrade flax optax tensorflow_datasets torch torchvision dm-haiku transformers 
+
 
 

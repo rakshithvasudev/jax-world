@@ -2,6 +2,38 @@
 Welcome! Lets explore the beautiful world of Jax environment together :)
 
 
+
+## Dockerfile Usage
+The dockerfile has your fav libraries. JAX, Huggingface, PyTorch, Flax, Haiku and much more like functorch will be added.
+Install [Docker](https://docs.docker.com/get-docker/) on your local host machine.
+
+- For GPU support on Linux, [install NVIDIA Docker support](https://github.com/NVIDIA/nvidia-docker).
+   - Take note of your Docker version with docker -v. Versions earlier than 19.03 require nvidia-docker2 and the --runtime=nvidia flag. On versions including and after 19.03, you will use the nvidia-container-toolkit package and the --gpus all flag. Both options are documented on the page linked above.
+
+
+
+1. Clone this repo:
+
+   ```bash
+   git clone https://github.com/rakshithvasudev/jax-world.git 
+   ```
+
+2. Build Dockerfile
+
+```bash
+cd jax-world/ && docker build -t . jax-world:v1.0
+```
+
+3. Run Docker
+``` bash 
+docker run --rm --gpus=all -v $PWD:/work --ipc=host jax-world:v1.0
+```
+
+	
+
+
+
+
 ## [Jax](https://github.com/google/jax)
 Jax = Numpy + Different kinds of autograd  + H/W Acceleration + XLA/JIT
 Lets not forget the functional composition.
